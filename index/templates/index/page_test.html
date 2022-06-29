@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页测试</title>
+</head>
+<body>
+{% for p in page %}
+    <div>
+        书名：{{ p.title }}
+    </div>
+{% endfor %}
+<!--判断是否有上一页，然后拼接关于page的查询字符串-->
+{% if page.has_previous %}
+{# 得到上一页的页码编号 #}
+  <a href="/index/page_test?page={{ page.previous_page_number }}">上一页</a>
+{% else %}
+上一页
+{% endif %}
+{# 在页面范围内循环选择一个页面号码 #}
+{% for p in paginator.page_range %}
+{# 如果页面编号等于当前页码序号 #}
+    {% if p == page.number %}
+        {{ p }}
+    {% else %}
+         {# 否则跳转到页码相对应的页面 #}
+        <a href="/index/page_test?page={{ p }}">{{ p }}</a>
+    {% endif %}
+{% endfor %}
+
+{% if page.has_next %}
+  <a href="/index/page_test?page={{ page.next_page_number }}">下一页</a>
+{% else %}
+下一页
+{% endif %}
+</body>
+</html>

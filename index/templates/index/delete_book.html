@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除书籍条目</title>
+    <style>
+        input:not([type="submit"]){
+       border:1px solid blue;
+                             }
+        input[type="submit"]{
+        background:red;
+        }
+
+    </style>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>
+        书籍名:<input type="text"  value="{{ book.title }}" name="title">
+    </p>
+
+    <p>
+        零售价:<input type="text" value="{{ book.price }}" name="price">
+    </p>
+    <p>
+        市场价:<input type="text" name="retail_price" value="{{ book.retail_price }}">
+    </p>
+    <p>
+        出版社:<input type="text" value="{{ book.pub.pubname }}" name="pub">
+    </p>
+    <p>
+       <input type="submit" value="确认删除">
+    </p>
+
+</form>
+</body>
+</html>
